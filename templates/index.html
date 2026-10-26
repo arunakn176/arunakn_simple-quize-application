@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Quiz Application</title>
+</head>
+<body>
+    <h1>Welcome to the Simple Quiz</h1>
+    <p>Test your computer knowledge!</p>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form action="/quiz" method="POST">
+        <label>Enter your name:</label>
+        <input type="text" name="name" required>
+        <button type="submit">Start Quiz</button>
+    </form>
+
+    <p><a href="/about">About this project</a></p>
+</body>
+</html>

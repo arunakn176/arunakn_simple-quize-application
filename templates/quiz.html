@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Questions</title>
+</head>
+<body>
+    <h1>Simple Computer Quiz</h1>
+
+    <p>Welcome, {{ name }}!</p>
+    <p>Choose one answer for each question.</p>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form action="/result" method="POST">
+        <input type="hidden" name="name" value="{{ name }}">
+
+        {% for q in questions %}
+            {% set question_index = loop.index0 %}
+
+            <h3>{{ loop.index }}. {{ q.question }}</h3>
+
+            {% for option in q.options %}
+                <label>
+                    <input
+                        type="radio"
+                        name="q{{ question_index }}"
+                        value="{{ loop.index0 }}"
+                        required
+                    >
+                    {{ option }}
+                </label>
+                <br>
+            {% endfor %}
+
+        {% endfor %}
+
+        <br>
+        <button type="submit">Submit Answers</button>
+    </form>
+</body>
+</html>
